@@ -1,0 +1,45 @@
+# trigger:
+# - main
+# - release*
+
+# # Where to Run ??
+# pool:
+#    vmImage: ubuntu-latest
+# # ABove Hints it's MS Hosted 
+ 
+# # If you Don't explicity specify 
+# # Job-1 is auto created for you 
+
+# # Steps: As part of current job 
+# # What you wish to do ??
+# steps:
+# - script: echo Hello, world!
+#   displayName: 'Run a one-line script'
+
+# - script: |
+#     echo Add other tasks to build, test, and deploy your project.
+#     echo See https://aka.ms/yaml
+#   displayName: 'Run a multi-line script'
+
+##############################################################################################
+# GITHUB ACTIONS 
+###############################################################################################
+
+# WHEN TP RUN PIPELINE
+
+on:
+  push:
+    branches:
+      - main
+      - 'releases/**'
+      
+# Where to Run ??
+jobs:
+  first-job:
+      runs-on: ubuntu-latest
+      steps:
+      - name: FIrst
+        run: echo "Ok Now I'm using Github actions"
+      
+
+

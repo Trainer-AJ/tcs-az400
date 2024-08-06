@@ -43,7 +43,9 @@ jobs:
       runs-on: ubuntu-latest
       steps:
       - name: FIrst
-        run: echo "Ok Now I'm using Github actions"
+        run: |
+          echo "Ok Now I'm using Github actions"
+          echo "This is Repo level Var => $REPO_VAR
         
   second-job:
       runs-on: ubuntu-latest

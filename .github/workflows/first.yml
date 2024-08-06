@@ -45,7 +45,7 @@ jobs:
       - name: FIrst
         run: |
           echo "Ok Now I'm using Github actions"
-          echo "This is Repo level Var => $REPO_VAR
+          echo "This is Repo level Var => $REPO_VAR"
         
   second-job:
       runs-on: ubuntu-latest

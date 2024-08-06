@@ -1,32 +1,8 @@
-# trigger:
-# - main
-# - release*
-
-# # Where to Run ??
-# pool:
-#    vmImage: ubuntu-latest
-# # ABove Hints it's MS Hosted 
- 
-# # If you Don't explicity specify 
-# # Job-1 is auto created for you 
-
-# # Steps: As part of current job 
-# # What you wish to do ??
-# steps:
-# - script: echo Hello, world!
-#   displayName: 'Run a one-line script'
-
-# - script: |
-#     echo Add other tasks to build, test, and deploy your project.
-#     echo See https://aka.ms/yaml
-#   displayName: 'Run a multi-line script'
-
 ##############################################################################################
 # GITHUB ACTIONS 
 ###############################################################################################
 
-# WHEN TP RUN PIPELINE
-
+# WHEN TO RUN PIPELINE
 on:
   push:
     branches:
@@ -37,25 +13,28 @@ env:
   DAY_OF_WEEK: Tuesday
   Name: AJ
   
-# Where to Run ??
 jobs:
+  azure:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Login
+        run: az login --service-principal -u ${{ secrets.ID }} -p ${{ secrets.PASSWD }} --tenant ${{ secrets.TENANT }}
+      - name: List RG
+        run: az group list
+
   first-job:
-      runs-on: ubuntu-latest
-      steps:
-      - name: FIrst
+    runs-on: ubuntu-latest
+    steps:
+      - name: First
         run: |
-          echo "Ok Now I'm using Github actions"
+          echo "Ok Now I'm using GitHub Actions"
           echo "This is Repo level Var => $REPO_VAR"
         
   second-job:
-      runs-on: ubuntu-latest
-      steps:
-      - name: second
+    runs-on: ubuntu-latest
+    steps:
+      - name: Second
         run: |
-          echo "Ok Now I'm using Github actions"
-          echo "On $DAY_OF_WEEK "
+          echo "Ok Now I'm using GitHub Actions"
+          echo "On $DAY_OF_WEEK"
           echo "BTW This is $Name"
-  
-      
-
-

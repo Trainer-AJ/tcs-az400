@@ -32,7 +32,11 @@ on:
     branches:
       - main
       - 'releases/**'
-      
+
+env:
+  DAY_OF_WEEK: Tuesday
+  Name: AJ
+  
 # Where to Run ??
 jobs:
   first-job:
@@ -40,6 +44,16 @@ jobs:
       steps:
       - name: FIrst
         run: echo "Ok Now I'm using Github actions"
+        
+  second-job:
+      runs-on: ubuntu-latest
+      steps:
+      - name: second
+        run: |
+          echo "Ok Now I'm using Github actions"
+          echo "On $DAY_OF_WEEK "
+          echo "BTW This is $Name"
+  
       
 
 

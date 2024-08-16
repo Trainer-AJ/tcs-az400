@@ -10,6 +10,60 @@ git remote add origin https://github.com/Trainer-AJ/tcs-az400.git
 git push -u origin main
 ```
 
+# logs 
+```
+browserTimings 
+
+requests 
+
+// Count of failed and successful requests over time
+requests
+| extend success=tobool(success)
+| where timestamp > datetime("2024-08-16T11:36:00.000Z") and timestamp < datetime("2024-08-16T12:36:00.000Z")
+| where cloud_RoleName == 'mangulaptop97'
+| where client_Type == "PC"
+| summarize
+    succeeded=sumif(itemCount, success == true),
+    failed=sumif(itemCount, success == false)
+    by bin(timestamp, 1m)
+| render timechart
+
+// Percentiles of request duration over time
+requests
+| where timestamp > datetime("2024-08-16T11:36:00.000Z") and timestamp < datetime("2024-08-16T12:36:00.000Z")
+| where cloud_RoleName == 'mangulaptop97'
+| where client_Type == "PC"
+| summarize percentiles(duration, 50, 75, 95) by bin(timestamp, 1m)
+| render timechart
+
+// Count of failed and successful calls over time
+dependencies
+| extend success=tobool(success)
+| where timestamp > datetime("2024-08-16T11:36:00.000Z") and timestamp < datetime("2024-08-16T12:36:00.000Z")
+| where cloud_RoleName == 'mangulaptop97'
+| where client_Type == "PC"
+| summarize
+    succeeded=sumif(itemCount, success == true),
+    failed=sumif(itemCount, success == false)
+    by target, bin(timestamp, 1m)
+| render timechart
+
+// 95th percentile of dependency duration by target over time
+dependencies
+| where timestamp > datetime("2024-08-16T11:36:00.000Z") and timestamp < datetime("2024-08-16T12:36:00.000Z")
+| where cloud_RoleName == 'mangulaptop97'
+| where client_Type == "PC"
+| summarize percentiles(duration, 95) by bin(timestamp, 1m), target
+| render timechart
+
+// Operations performance 
+// Calculate request count and duration by operations. 
+// To create an alert for this query, click '+ New alert rule'
+requests
+| summarize RequestsCount=sum(itemCount), AverageDuration=avg(duration), percentiles(duration, 50, 95, 99) by operation_Name // you can replace 'operation_Name' with another value to segment by a different property
+| order by RequestsCount desc // order from highest to lower (descending)
+```
+
 Use Cases - Logic App 
 https://learn.microsoft.com/en-us/azure/logic-apps/logic-apps-examples-and-scenarios
 

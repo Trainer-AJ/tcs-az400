@@ -11,6 +11,13 @@ git push -u origin main
 ```
 
 # logs 
+- bash
+```
+#!/bin/bash
+
+while true; do curl https://mangulaptop97.azurewebsites.net/wow/ > /dev/null ; sleep 5; done
+```
+- logs 
 ```
 browserTimings 
 

@@ -3,11 +3,11 @@
 ###############################################################################################
 
 # WHEN TO RUN PIPELINE
-on:
-  push:
-    branches:
-      - main
-      - 'releases/**'
+# on:
+#   push:
+#     branches:
+#       - main
+#       - 'releases/**'
 
 env:
   DAY_OF_WEEK: Tuesday

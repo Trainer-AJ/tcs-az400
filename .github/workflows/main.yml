@@ -8,7 +8,7 @@ jobs:
           name: AJ
         run: |
           echo ******************
-          echo this is $(name)
+          echo this is $name
 
 # trigger: none
 

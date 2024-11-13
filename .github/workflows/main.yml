@@ -1,0 +1,22 @@
+on: workflow_dispatch
+
+jobs:
+  first:
+    runs-on: ubuntu-latest
+    steps:
+      - env:
+          name: AJ
+        run: |
+          echo ******************
+          echo this is $(name)
+
+# trigger: none
+
+# jobs:
+# - job: A
+#   pool:
+#     vmImage: ubuntu-latest
+#   variables:
+#   - name
+#   steps:
+#   - bash: echo 

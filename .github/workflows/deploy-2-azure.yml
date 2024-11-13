@@ -18,5 +18,6 @@ jobs:
   
       - name: 'Run az commands'
         run: |
+          az group create -n gh-actions -l uksouth
           az account show
           az group list -o tsv
